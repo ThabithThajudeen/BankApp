@@ -1,0 +1,144 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Banking System" Height="600" Width="900">
+    <Grid Margin="20">
+        <TabControl>
+
+            <!-- Account Management Tab -->
+            <TabItem Header="Accounts">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Account ID" Grid.Row="0" Grid.Column="0"/>
+                    <TextBox x:Name="AccountIdTextBox" Width="250" Grid.Row="0" Grid.Column="1" Margin="5" IsReadOnly="True" />
+
+                    <Label Content="Account Number" Grid.Row="1" Grid.Column="0"/>
+                    <TextBox x:Name="AccountNumberTextBox" Width="250" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="Account Holder Name" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox x:Name="AccountHolderNameTextBox" Width="250" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="Balance" Grid.Row="3" Grid.Column="0"/>
+                    <TextBox x:Name="BalanceTextBox" Width="250" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="Email" Grid.Row="4" Grid.Column="0"/>
+                    <TextBox x:Name="AccountEmailTextBox" Width="250" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="Address" Grid.Row="5" Grid.Column="0"/>
+                    <TextBox x:Name="AccountAddressTextBox" Width="250" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="Phone" Grid.Row="6" Grid.Column="0"/>
+                    <TextBox x:Name="AccountPhoneTextBox" Width="250" Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="10,10,10,227" Grid.Row="7" Grid.Column="1">
+                        <Button Content="Create" x:Name="CreateAccountButton" Width="100" Click="CreateAccountButton_Click"/>
+                        <Button Content="Update" x:Name="UpdateAccountButton" Width="100" Click="UpdateAccountButton_Click"/>
+                        <Button Content="Search" x:Name="SearchAccountButton" Width="100" Click="SearchAccountButton_Click"/>
+                        <Button Content="Delete" x:Name="DeleteAccountButton" Width="100" Click="DeleteAccountButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+            <!-- Transaction Management Tab -->
+            <TabItem Header="Transactions">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Transaction UI components -->
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Margin="10">
+                        <TextBox x:Name="TransactionAccountNumberTextBox" Text="Account Number for Transaction" Width="250"/>
+                        <TextBox x:Name="TransactionAmountTextBox" Text="Amount" Width="250"/>
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <Button Content="Deposit" x:Name="DepositButton" Width="120" Click="DepositButton_Click"/>
+                            <Button Content="Withdraw" x:Name="WithdrawButton" Width="120" Click="WithdrawButton_Click"/>
+                            <!-- Adding Button to Get Transaction History -->
+                            <Button Content="Get Transaction History" x:Name="GetTransactionHistoryButton" Width="200" Click="GetTransactionHistoryButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- List to display transaction history -->
+                    <Label Content="Transaction History" Grid.Row="1" Margin="10"/>
+                    <ListView x:Name="TransactionHistoryList" Grid.Row="2" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="80"/>
+                                <GridViewColumn Header="Account Number" DisplayMemberBinding="{Binding AccountNumber}" Width="80"/>
+                                <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}" Width="80"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+
+            <!-- User Profile Management Tab -->
+            <TabItem Header="User Profiles">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- User Profile UI components -->
+                    <Label Content="ID" Grid.Row="0" Grid.Column="0"/>
+                    <TextBox x:Name="UserIdTextBox" Width="250" Grid.Row="0" Grid.Column="1"/>
+
+                    <Label Content="Name" Grid.Row="1" Grid.Column="0"/>
+                    <TextBox x:Name="UserNameTextBox" Width="250" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Content="Email" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox x:Name="UserEmailTextBox" Width="250" Grid.Row="2" Grid.Column="1"/>
+
+                    <Label Content="Address" Grid.Row="3" Grid.Column="0"/>
+                    <TextBox x:Name="UserAddressTextBox" Width="250" Grid.Row="3" Grid.Column="1"/>
+
+                    <Label Content="Phone" Grid.Row="4" Grid.Column="0"/>
+                    <TextBox x:Name="UserPhoneTextBox" Width="250" Grid.Row="4" Grid.Column="1"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="5" Grid.Column="1">
+                        <Button Content="Create" x:Name="CreateProfileButton" Width="100" Click="CreateProfileButton_Click"/>
+                        <Button Content="Update" x:Name="UpdateProfileButton" Width="100" Click="UpdateProfileButton_Click"/>
+                        <Button Content="Search" x:Name="SearchProfileButton" Width="100" Click="SearchProfileButton_Click"/>
+                        <Button Content="Delete" x:Name="DeleteProfileButton" Width="100" Click="DeleteProfileButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
